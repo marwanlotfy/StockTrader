@@ -8,6 +8,7 @@ export const store = new Vuex.Store({
         Google : { quantity : 0 , price : 200 },
         Apple : { quantity : 0 ,price : 250 },
         Twitter : { quantity : 0 ,price :8 },
+        loading : false,
     },
     getters : {
         getFunds (state){
@@ -37,6 +38,9 @@ export const store = new Vuex.Store({
         gettwitterprice (state){
             return state.Twitter.price;
         }, 
+        getloadingstate (state){
+            return state.loading;
+        }
     },
     mutations : {
         buying(state,payload){
@@ -57,9 +61,13 @@ export const store = new Vuex.Store({
             state.Apple.price=Apple;
             state.Twitter.price=Twitter;
         },
+        changeloadingstate(state){
+            state.loading = !state.loading;
+        }
     },
     actions : {
         savestate(context){
+            context.commit('changeloadingstate');
             axios.post('/savestate', {
                 BMW : context.state.BMW.price,
                 Google : context.state.Google.price,
@@ -68,16 +76,20 @@ export const store = new Vuex.Store({
               })
               .then(function (response) {
                 console.log(response);
+                context.commit('changeloadingstate');
               })
               .catch(function (error) {
                 console.log(error);
+                context.commit('changeloadingstate');
               });
 
         },
         loadstate(context){
+            context.commit('changeloadingstate');
             axios.get('/loadstate')
             .then(function (response) {
                 console.log(response);
+                context.commit('changeloadingstate');
                 context.state.BMW.price=response.data.BMW;
                 context.state.Google.price=response.data.Google;
                 context.state.Apple.price=response.data.Apple;
@@ -86,6 +98,7 @@ export const store = new Vuex.Store({
             .catch(function (error) {
                 // handle error
                 console.log(error);
+                context.commit('changeloadingstate');
             })
         },
     }
