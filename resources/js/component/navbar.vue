@@ -1,17 +1,14 @@
 <template>
 <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <router-link class="nav-link" to="/">Stock Trader </router-link>
+      <button @click="togglenav" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  <div :class="{show : navactive}" class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <router-link class="nav-link" to="/">Stock Trader </router-link>
-      </li>
-      
         <router-link class="nav-item" to="/portfolio" activeClass="active" tag="li"><a class="nav-link">Portfolio</a></router-link>
-     
-      
         <router-link class="nav-item" to="/stock" activeClass="active" tag="li"><a class="nav-link">Stocks</a></router-link>
-
     </ul>
       <ul class="nav navbar-nav navbar-right" >
       <li class="nav-item">
@@ -40,6 +37,7 @@ export default {
     data(){
         return {
             active : false,
+            navactive : false,
         }
     },
     computed : {
@@ -65,6 +63,9 @@ export default {
         load(){
           this.loadstate();
           this.active=false;
+        },
+        togglenav(){
+          this.navactive = !this.navactive;
         }
     }
 
