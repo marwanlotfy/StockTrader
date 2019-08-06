@@ -1,7 +1,7 @@
 <template>
 <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <router-link class="nav-link" to="/">Stock Trader </router-link>
+      <router-link class="nav-link navbar-brand" to="/">Stock Trader </router-link>
       <button @click="togglenav" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

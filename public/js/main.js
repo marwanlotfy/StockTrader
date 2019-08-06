@@ -14102,9 +14102,11 @@ var render = function() {
       "nav",
       { staticClass: "navbar navbar-expand-lg navbar-light bg-light" },
       [
-        _c("router-link", { staticClass: "nav-link", attrs: { to: "/" } }, [
-          _vm._v("Stock Trader ")
-        ]),
+        _c(
+          "router-link",
+          { staticClass: "nav-link navbar-brand", attrs: { to: "/" } },
+          [_vm._v("Stock Trader ")]
+        ),
         _vm._v(" "),
         _c(
           "button",
